@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息列表</title>
+</head>
+<body>
+<table border="1px" width="100%" style="border-collapse: collapse;">
+    <a href="../assist_login/add">添加信息</a>
+    <tr>
+        <th>序号</th>
+        <th>登录名</th>
+        <th>登录url</th>
+        <th>重定向url</th>
+        <th>登录用户名</th>
+        <th>登录密码</th>
+        <th>浏览器类型</th>
+        <th>打开窗口方式</th>
+        <th>用户角色</th>
+        <th>用户岗位</th>
+        <th>数据范围</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+    {% for i in login_data %}
+        <tr>
+            <td align="center">{{ forloop.counter }} </td>
+            <td align="center">{{i.login_name}}</td>
+            <td align="center">{{i.login_url}}</td>
+            <td align="center">{{i.redirect}}</td>
+            <td align="center">{{i.username}}</td>
+            <td align="center">{{i.password}}</td>
+            {% for j in browser_type_choice %}
+                {% if i.browser_type in j %}
+            <td align="center">{{j.1}}</td>
+                {% endif %}
+            {% endfor %}
+            {% for j in close_window_method_choice %}
+                {% if i.close_window_method in j %}
+            <td align="center">{{j.1}}</td>
+                {% endif %}
+            {% endfor %}
+            <td align="center">{{i.user_role}}</td>
+            <td align="center">{{i.quarter}}</td>
+            <td align="center">{{i.data_range}}</td>
+            <td align="center">{{i.remark}}</td>
+            <td align="center">
+                <a href="../assist_login/edit/?id={{ i.id }}">编辑</a>
+                <a href="../assist_login/delete/?id={{ i.id }}">删除</a>
+                <a href="../assist_login/login/?id={{ i.id }}" >登录</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

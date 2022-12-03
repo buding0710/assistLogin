@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息添加</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 1px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../add/">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>登录名</th>
+            <td><input name="login_name"></td>
+        </tr>
+        <tr>
+            <th>登录URL</th>
+            <td><input name="login_url"/></td>
+        </tr>
+        <tr>
+            <th>重定向URL</th>
+            <td><input name="redirect"/></td>
+        </tr>
+        <tr>
+            <th>登录用户名</th>
+            <td><input name="username"/></td>
+        </tr>
+        <tr>
+            <th>登录密码</th>
+            <td><input name="password"/></td>
+        </tr>
+        <tr>
+            <th>浏览器类型</th>
+            <td>
+                <select name="browser_type">
+                    {% for i in browser_type_choice %}
+                        <option value="{{ i.0 }}" >{{ i.1 }}</option>
+                    {% endfor %}
+                </select>
+<!--                <input name="browser_type"/>-->
+            </td>
+        </tr>
+        <tr>
+            <th>打开窗口方式</th>
+            <td>
+                <select name="close_window_method">
+                    {% for i in close_window_method_choice %}
+                        <option value="{{ i.0 }}" >{{ i.1 }}</option>
+                    {% endfor %}
+                </select>
+<!--                <input name="close_window_method"/>-->
+            </td>
+        </tr>
+        <tr>
+            <th>用户角色</th>
+            <td><input name="user_role"/></td>
+        </tr>
+        <tr>
+            <th>用户岗位</th>
+            <td><input name="quarter"/></td>
+        </tr>
+        <tr>
+            <th>数据范围</th>
+            <td><input name="data_range"/></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><input name="remark"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

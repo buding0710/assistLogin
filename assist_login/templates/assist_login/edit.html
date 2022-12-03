@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息编辑</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 1px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../edit/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ login_data.id }}"/>
+    <table>
+        <tr>
+            <th>登录名</th>
+            <td><input name="login_name" value="{{ login_data.login_name }}"/></td>
+        </tr>
+        <tr>
+            <th>登录URL</th>
+            <td><input name="login_url" value="{{ login_data.login_url }}"/></td>
+        </tr>
+        <tr>
+            <th>重定向URL</th>
+            <td><input name="redirect" value="{{ login_data.redirect }}"/></td>
+        </tr>
+        <tr>
+            <th>登录用户名</th>
+            <td><input name="username" value="{{ login_data.username }}"/></td>
+        </tr>
+        <tr>
+            <th>登录密码</th>
+            <td><input name="password" value="{{ login_data.password }}"/></td>
+        </tr>
+        <tr>
+            <th>浏览器类型</th>
+            <td>
+                <select name="browser_type">
+                    {% for i in browser_type_choice %}
+                            {% if login_data.browser_type in i %}
+                                <option value="{{i.0}}" selected>{{i.1}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.1}}</option>
+                            {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>打开窗口方式</th>
+            <td>
+                <select name="close_window_method">
+                    {% for i in close_window_method_choice %}
+                            {% if login_data.close_window_method in i %}
+                                <option value="{{i.0}}" selected>{{i.1}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.1}}</option>
+                            {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>用户角色</th>
+            <td><input name="user_role" value="{{ login_data.user_role }}"/></td>
+        </tr>
+        <tr>
+            <th>用户岗位</th>
+            <td><input name="quarter" value="{{ login_data.quarter }}"/></td>
+        </tr>
+        <tr>
+            <th>数据范围</th>
+            <td><input name="data_range" value="{{ login_data.data_range }}"/></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><input name="remark" value="{{ login_data.remark }}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
